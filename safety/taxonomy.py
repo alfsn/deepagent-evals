@@ -42,3 +42,9 @@ def post_dimensions() -> dict[str, DimensionSpec]:
 @cache
 def load_config(name: str) -> dict:
     return yaml.safe_load((CONFIG / name).read_text())
+
+
+def preload() -> None:
+    """Read every config file now (sync), so nothing touches the disk later inside the event loop."""
+    load_taxonomy()
+    load_config("risk_lists.yaml")

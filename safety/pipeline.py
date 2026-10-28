@@ -11,6 +11,7 @@ from safety.detectors.keywords import KeywordDetector
 from safety.detectors.llm_classifier import LLMClassifier
 from safety.escalation import EscalationPolicy
 from safety.models import Creator, Post, SafetyReport
+from safety.taxonomy import preload
 
 
 class SafetyPipeline:
@@ -43,6 +44,8 @@ class SafetyPipeline:
 
 
 def default_pipeline(escalation: EscalationPolicy | None = None, llm=None) -> SafetyPipeline:
+    """Build once, outside the event loop (e.g. at import): construction reads the YAML config."""
+    preload()
     return SafetyPipeline(
         screeners=[KeywordDetector(), DisclosureDetector()],
         escalated=[LLMClassifier(llm=llm)],

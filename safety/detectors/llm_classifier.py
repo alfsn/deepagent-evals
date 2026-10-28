@@ -89,7 +89,9 @@ class LLMClassifier:
         for _ in range(self.retries + 1):
             self.calls += 1
             try:
-                out = await self.llm.ainvoke(prompt)
+                # First use builds the client (reads SSL certs): do it off the event loop.
+                llm = self._llm or await asyncio.to_thread(lambda: self.llm)
+                out = await llm.ainvoke(prompt)
                 if out is not None:
                     found = {f.dimension: f for f in out.findings}
                     return [

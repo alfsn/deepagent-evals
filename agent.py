@@ -69,9 +69,17 @@ async def build_agent(model: str = AGENT_MODEL):
     )
 
 
+_graph = None
+
+
 async def make_graph():
-    """Zero-arg entrypoint for LangGraph Studio (see langgraph.json)."""
-    return await build_agent()
+    """Zero-arg entrypoint for LangGraph Studio (see langgraph.json).
+
+    Cached: Studio calls this on every graph/schema request and run, and each build respawns the MCP server."""
+    global _graph
+    if _graph is None:
+        _graph = await build_agent()
+    return _graph
 
 
 def summarize(messages) -> dict:

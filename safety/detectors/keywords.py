@@ -6,7 +6,6 @@ Uses stdlib `re`; swap in pyahocorasick inside this class if lexicons grow to th
 
 import re
 import unicodedata
-from functools import cached_property
 from pathlib import Path
 
 import yaml
@@ -33,9 +32,10 @@ class KeywordDetector:
     def __init__(self, lexicon_dir: Path = LEXICONS, base_lang: str = "en"):
         self.lexicon_dir = lexicon_dir
         self.base_lang = base_lang  # always applied: influencer posts mix English into other languages
+        # Loaded eagerly: lazy file reads inside an async tool block the event loop (langgraph dev rejects them).
+        self._compiled = self._load()
 
-    @cached_property
-    def _compiled(self) -> dict[str, tuple[re.Pattern | None, dict[str, re.Pattern]]]:
+    def _load(self) -> dict[str, tuple[re.Pattern | None, dict[str, re.Pattern]]]:
         out = {}
         for f in sorted(self.lexicon_dir.glob("*.yaml")):
             lex = yaml.safe_load(f.read_text())

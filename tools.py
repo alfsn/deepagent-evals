@@ -5,6 +5,9 @@ from pathlib import Path
 
 from langchain_core.tools import tool
 
+from mcp_server import (
+    BRANDS,  # same source of truth the agent reads via get_brand_guidelines
+)
 from safety import Creator, Post, default_pipeline, suitability
 from safety.detectors.llm_classifier import LLMClassifier
 
@@ -14,6 +17,8 @@ KNOWN_HANDLES = set(BY_HANDLE)
 POSTS = [Post(**p) for p in json.loads((Path(__file__).parent / "data" / "posts.json").read_text())]
 POSTS_BY_ID = {p.id: p for p in POSTS}
 _REPORTS = {}  # safety reports are brand-independent, so one per handle per process is enough
+# Built at import: construction reads YAML, which must not happen inside an async tool call.
+SAFETY_PIPELINE = default_pipeline()
 
 
 def _handle(handle: str) -> str:
@@ -60,11 +65,9 @@ async def get_safety_report(handle: str, brand: str | None = None) -> dict:
         return {"error": f"unknown handle {handle}"}
     key = _handle(handle)
     if key not in _REPORTS:
-        _REPORTS[key] = await default_pipeline().run(*inputs)
+        _REPORTS[key] = await SAFETY_PIPELINE.run(*inputs)
     out = _REPORTS[key].compact()
     if brand:
-        # Same source of truth the agent reads via get_brand_guidelines.
-        from mcp_server import BRANDS
         out["brand_fit"] = suitability(_REPORTS[key], BRANDS.get(brand.lower(), {}).get("safety_tolerance"))
     return out
 
