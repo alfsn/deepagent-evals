@@ -1,0 +1,10 @@
+allowlist: []
+dimensions:
+  drugs_alcohol_tobacco:
+    terms: [cerveja, cachaça, bêbado, maconha]
+  misinformation:
+    terms: [cura, detox, milagre, "queima gordura", "sem dieta", emagrece]
+  gambling:
+    terms: [aposta, apostas, cassino, bet]
+  profanity:
+    terms: [porra, caralho, merda]

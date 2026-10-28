@@ -1,0 +1,67 @@
+# Safety dimensions. Add a dimension here (plus lexicon terms) without touching code.
+# floor: unsafe for every brand when confirmed (GARM Brand Safety Floor).
+# unsafe_at: minimum confirmed severity (low|medium|high|never) that makes the dimension "unsafe".
+# review_at: minimum confirmed severity worth a reviewer's time (default low); below it the post is cleared.
+# garm: closest GARM category, null where GARM has no equivalent (influencer-specific).
+
+post:
+  hate_harassment:
+    garm: hate_speech_acts_of_aggression
+    floor: true
+    unsafe_at: low
+    description: Attacks or slurs against people based on protected attributes; bullying or harassment of individuals.
+  adult_explicit:
+    garm: adult_explicit_sexual_content
+    floor: false
+    unsafe_at: medium
+    description: Sexual or explicit content, nudity, sexual solicitation.
+  violence_weapons:
+    garm: arms_ammunition
+    floor: false
+    unsafe_at: medium
+    description: Graphic violence, threats, promotion or sale of weapons.
+  drugs_alcohol_tobacco:
+    garm: illegal_drugs_tobacco_ecigarettes_vaping_alcohol
+    floor: false
+    unsafe_at: high
+    description: Promotion of illegal drugs; alcohol, tobacco or vaping promotion (age-gated, brand-dependent).
+  misinformation:
+    garm: misinformation
+    floor: false
+    unsafe_at: medium
+    description: False or unverified claims, especially health claims (cures, guaranteed weight loss, detox).
+  gambling:
+    garm: null
+    floor: false
+    unsafe_at: high
+    description: Promotion of betting, casinos or gambling apps (age-gated, brand-dependent).
+  profanity:
+    garm: obscenity_and_profanity
+    floor: false
+    unsafe_at: high
+    review_at: medium  # a passing "damn" isn't worth a reviewer (GARM: low risk)
+    description: Swearing, vulgar language.
+  debated_social_issues:
+    garm: debated_sensitive_social_issues
+    floor: false
+    unsafe_at: high
+    description: Divisive political or social commentary (abortion, elections, immigration).
+  undisclosed_sponsorship:
+    garm: null
+    floor: false
+    unsafe_at: never  # one slip is "review"; a systemic pattern is caught by the creator-level disclosure_rate
+    description: Mentions or tags a brand in a promotional way without an #ad / #sponsored / paid-partnership disclosure (FTC / ASA).
+
+creator:
+  minor_audience_exposure:
+    floor: false
+    unsafe_at: medium
+    description: Large under-18 audience combined with age-gated content (alcohol, gambling, adult).
+  risky_partnerships:
+    floor: false
+    unsafe_at: medium
+    description: Past brand deals with high-risk categories (unverified supplements, gambling, crypto schemes).
+  disclosure_rate:
+    floor: false
+    unsafe_at: medium
+    description: Share of brand-mentioning posts that carry a disclosure.
