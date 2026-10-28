@@ -1,0 +1,25 @@
+[project]
+name = "deepagent-evals"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "deepagents>=0.7.32",
+    "httpx>=0.28.1",
+    "langchain>=1.4.7",
+    "langchain-community>=0.4.2",
+    "langchain-mcp-adapters>=0.3.2",
+    "langchain-ollama>=1.1.0",
+    "langgraph>=1.2.18",
+    "langgraph-checkpoint-sqlite>=3.1.2",
+    "mcp>=1.30.0",
+    "pydantic>=2.14.1",
+    "python-dotenv>=1.2.4",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+    "langgraph-cli[inmem]>=0.4.40",
+    "pytest>=9.1.1",
+    "ruff>=0.17.3",
+]

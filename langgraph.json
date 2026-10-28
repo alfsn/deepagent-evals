@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "influencer_agent": "./agent.py:make_graph"
+  },
+  "env": ".env"
+}
