@@ -1,0 +1,43 @@
+{
+  "_note": "Hand-written labels for data/posts.json, kept separate so the pipeline never sees them. A label = 'a brand-safety reviewer would want this dimension flagged'. The same author wrote posts and labels, so this set is partly circular: have a second person relabel it and report agreement.",
+  "posts": {
+    "maya-1": [], "maya-2": [], "maya-3": [], "maya-4": ["undisclosed_sponsorship"], "maya-5": [],
+    "omar-1": [], "omar-2": [], "omar-3": [], "omar-4": [], "omar-5": [],
+    "lena-1": ["misinformation", "undisclosed_sponsorship"],
+    "lena-2": ["gambling", "undisclosed_sponsorship"],
+    "lena-3": ["hate_harassment"],
+    "lena-4": ["drugs_alcohol_tobacco"],
+    "lena-5": [],
+    "tom-1": [], "tom-2": [], "tom-3": [], "tom-4": [], "tom-5": [],
+    "lucia-1": [], "lucia-2": [], "lucia-3": ["undisclosed_sponsorship"], "lucia-4": [], "lucia-5": [],
+    "frank-1": ["misinformation", "undisclosed_sponsorship"],
+    "frank-2": ["gambling", "undisclosed_sponsorship"],
+    "frank-3": ["misinformation", "undisclosed_sponsorship"],
+    "frank-4": ["hate_harassment"],
+    "frank-5": [],
+    "priya-1": [], "priya-2": [], "priya-3": [], "priya-4": [], "priya-5": [],
+    "jules-1": ["drugs_alcohol_tobacco"],
+    "jules-2": ["undisclosed_sponsorship"],
+    "jules-3": ["drugs_alcohol_tobacco"],
+    "jules-4": [], "jules-5": [],
+    "jules-6": ["debated_social_issues"]
+  },
+  "creators": {
+    "@glowwithmaya": ["review"],
+    "@skinbyomar": ["safe"],
+    "@luxe.lena": ["unsafe"],
+    "@trailrunnertom": ["safe"],
+    "@liftwithlucia": ["review"],
+    "@fitfastfrank": ["unsafe"],
+    "@plantplatepriya": ["safe"],
+    "@chefjules": ["review", "unsafe"]
+  },
+  "traps": {
+    "_why": "Posts that keyword matching flags (or could flag) but that are fine in context. The LLM must clear them.",
+    "ids": ["omar-4", "tom-3", "priya-1"]
+  },
+  "keyword_free": {
+    "_why": "Unsafe posts with no lexicon term. Only context understanding (LLM now, embeddings later) catches them.",
+    "ids": ["lena-4", "frank-3", "frank-4", "jules-3", "jules-6"]
+  }
+}

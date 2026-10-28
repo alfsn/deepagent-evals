@@ -1,0 +1,12 @@
+allowlist: [entreno asesino]
+dimensions:
+  drugs_alcohol_tobacco:
+    terms: [cerveza, borracho, borracha, porro, chupitos]
+  misinformation:
+    terms: [cura, detox, milagro, "quema grasa", "sin dieta"]
+  gambling:
+    terms: [apuestas, casino]
+  profanity:
+    terms: [mierda, joder, puta]
+  hate_harassment:
+    terms: [escoria, "vuelve a tu país"]

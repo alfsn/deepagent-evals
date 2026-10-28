@@ -1,0 +1,12 @@
+# Disclosure markers (FTC / ASA). Matched case-insensitively anywhere in the post.
+disclosure_markers: ["#ad", "#sponsored", "#paidpartnership", "#partner", "paid partnership", "#publi", "#publicidad", "#publicité", "#partenariat", "#collab", "gifted"]
+# Past-brand substrings that indicate a risky partnership category.
+risky_brand_keywords:
+  unverified_supplements: [supplements co, detox, slim tea, fat burner]
+  gambling: [casino, bet, sportsbook]
+  crypto_schemes: [coin, crypto, nft]
+# Content dimensions that are age-gated: combined with a large under-18 audience -> minor_audience_exposure.
+age_gated_dimensions: [drugs_alcohol_tobacco, gambling, adult_explicit]
+minor_audience_threshold_pct: 25
+# Disclosure rate below this (with >=2 brand posts) -> review; below half of it -> unsafe.
+min_disclosure_rate: 0.8

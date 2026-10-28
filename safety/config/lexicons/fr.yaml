@@ -1,0 +1,10 @@
+allowlist: []
+dimensions:
+  drugs_alcohol_tobacco:
+    terms: [vin, bière, ivre, cuite, pinard]
+  misinformation:
+    terms: [détox, guérit, miracle, "brûle les graisses", "sans régime"]
+  gambling:
+    terms: [paris sportifs, casino]
+  profanity:
+    terms: [putain, merde, connard]

@@ -1,0 +1,31 @@
+# English lexicon. Terms are matched on word boundaries after normalization (NFKC, casefold, leetspeak).
+# allowlist phrases are blanked out before matching, to avoid known false positives (the Scunthorpe problem).
+allowlist:
+  - killer workout
+  - killer leg day
+  - killer abs
+  - shot of espresso
+  - espresso shot
+  - drugstore
+  - drugstore haul
+  - dead lift
+  - deadlift
+  - crushing it
+dimensions:
+  hate_harassment:
+    terms: [subhuman, vermin, "go back to your country", degenerate, "kill yourself", kys]
+  adult_explicit:
+    terms: [nsfw, onlyfans, nude, nudes, xxx, "link in bio for spicy"]
+  violence_weapons:
+    terms: [bomb, gun, guns, rifle, ammo, shoot, stab, "beat him up"]
+  drugs_alcohol_tobacco:
+    terms: [weed, cocaine, molly, vape, vaping, cigarette, tequila, vodka, beer, wasted, hungover, shots]
+  misinformation:
+    terms: [detox, cure, cures, "melts fat", "miracle", "doctors hate", "no diet needed", "guaranteed results", "boosts immunity"]
+  gambling:
+    terms: [casino, bet, betting, sportsbook, "free spins", jackpot, slots]
+  profanity:
+    terms: [fuck, fucking, shit, bitch, damn, wtf]
+    patterns: ['f+u+c+k+']
+  debated_social_issues:
+    terms: [abortion, election, immigration, "pro-life", "pro-choice", maga]
